@@ -13,7 +13,6 @@ class CBerry(object):
     
     def __init__(self):
         self.lib = cdll.LoadLibrary(os.path.join(basepath, "./libcberry.so"))
-        #print self.lib
         self.lib.init()
         
     def drawBuffer(self, buf):
@@ -21,7 +20,7 @@ class CBerry(object):
         
     def drawImage(self, filename):
         img = Image.open(filename)
-        img.thumbnail((320, 240), Image.ANTIALIAS)
+        img.thumbnail(self.display_size, Image.ANTIALIAS)
         self.drawBuffer(np.array(img).tostring())
         
     def drawString(self, x, y, text, bg_color=0, fg_color=255):
