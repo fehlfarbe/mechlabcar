@@ -8,6 +8,7 @@ import datetime
 
 from cberry import CBerry
 from can import TinyCAN
+from car import Car
 
 if __name__ == '__main__':
     
@@ -18,18 +19,23 @@ if __name__ == '__main__':
     ### init CAN interface
     can = TinyCAN()
     can.connect()
-    ### init motors
-    # ToDo
-    ### init sensors (angle, light, ...)
-    # ToDo
+    ### init car
+    car = Car()
     ### init camera
     # ToDo
     
     while True:
+        ### read can messages and print to display
         messages = can.recieveMessages()
         for i,msg in enumerate(messages):
             display.drawString(0, i*20, "%s %s" %(datetime.datetime.now().strftime("%H:%m:%S"), msg))
             print msg
+            
+        ### read car values
+        speed = car.speed
+        light_angle = car.light.angle
+        print speed, light_angle
+            
         time.sleep(0.1)
         
     ### cleanup
