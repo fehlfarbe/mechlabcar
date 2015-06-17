@@ -24,5 +24,8 @@ class CBerry(object):
         img.thumbnail((320, 240), Image.ANTIALIAS)
         self.drawBuffer(np.array(img).tostring())
         
+    def drawString(self, x, y, text, bg_color=0, fg_color=255):
+        self.lib.drawString(x, y, text, bg_color, fg_color)
+        
     def release(self):
         self.lib.release()

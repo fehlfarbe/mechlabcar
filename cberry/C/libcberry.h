@@ -10,3 +10,4 @@
 int init();
 void release();
 void loadBuffer(uint8_t* buf);
+void drawString( int x, int y, unsigned char *str, uint8_t BG_color, uint8_t FG_color );

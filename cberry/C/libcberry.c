@@ -44,15 +44,21 @@ void loadBuffer(uint8_t* buf){
 	RAIO_Write_Picture ( picture, PICTURE_PIXELS );
 }
 
+void drawString( int x, int y, unsigned char *str, uint8_t BG_color, uint8_t FG_color ){
+	RAIO_print_text( (uint16_t)x, (uint16_t)y, str, BG_color, FG_color );
+}
+
 int main(int argc, char** args){
 	int i;
 	uint8_t buf[PICTURE_PIXELS*3];
 	for(i=0; i<PICTURE_PIXELS*3; i++){
-		buf[i] = i % 255;
+		buf[i] = 0;
 	}
 
 	init();
 	loadBuffer(buf);
+	delay(5000);
+	drawString(0, 0, "Hallo", 0, 255);
 	delay(5000);
 	release();
 
